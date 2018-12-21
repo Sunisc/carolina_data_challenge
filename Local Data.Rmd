@@ -1,0 +1,32 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+head(r_data)
+```
+
+```{r}
+library(leaps)
+all = regsubsets(Obesity~Binge+Smoke+Inactive+Sleep, data=r_data, nbest=3)
+summary(all)
+ShowSubsets(all)
+```
+
+```{r}
+mod1 = lm(Obesity~Smoke+Inactive+Sleep, data=r_data)
+ggplotRegression(mod1)
+summary(mod1)
+```
+
+```{r}
+mod1 = lm(Obesity~Inactive+Sleep+Smoke,data =r_data)
+ggplotRegression(mod1)
+```
+
+```{r}
+mod1 = lm(Obesity~Sleep+Inactive+Smoke,data =r_data)
+ggplotRegression(mod1)
+```
+
